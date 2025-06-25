@@ -3,6 +3,7 @@ package com.example.demo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -41,8 +42,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean updateStudent(String name, Students st) {
-
+    public boolean updateStudent(Students st) {
+        Iterator<Students> itr= sl.iterator();
+        while(itr.hasNext()){
+            Students s=itr.next();
+            if(s.getSname().equals(st.getSname())){
+//                s.setAge(st.getAge());
+//                s.setMno(st.getMno());
+                sl.set(sl.indexOf(s),st);
+                return true;
+            }
+        }
         return false;
     }
 }

@@ -19,12 +19,16 @@ public class StudentController {
         return ss.readStudent(id);
     }
     @PostMapping("std")
-    public void PostStudents(Students st){
+    public void PostStudents(@RequestBody Students st){
            ss.createStudent(st);
     }
     @DeleteMapping("std/{id}")
     public boolean removeStudent(@PathVariable String id){
         return ss.deleteStudent(id);
 
+    }
+    @PutMapping("std/{id}")
+    public boolean updateStudent(@RequestBody Students st){
+       return ss.updateStudent(st);
     }
 }
